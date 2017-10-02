@@ -1,3 +1,4 @@
+require('./api/data/dbconnection.js').open(); //as soon as app starts, connect to DB.
 var express = require('express');
 var app = express(); //initializes express to bring it into the application
 var path = require('path');
