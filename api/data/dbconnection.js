@@ -1,3 +1,5 @@
+// No longer using this file as we're now connecting through Mongoose and the file db.js
+
 var MongoClient = require('mongodb').MongoClient; // install native mongodb driver
 var dburl = 'mongodb://localhost:27017/meanhotel'; //connection string through mongodb default port
 

@@ -1,4 +1,4 @@
-require('./api/data/dbconnection.js').open(); //as soon as app starts, connect to DB.
+require('./api/data/db.js'); //as soon as app starts, connect to DB (through mongoose connection).
 var express = require('express');
 var app = express(); //initializes express to bring it into the application
 var path = require('path');
