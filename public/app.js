@@ -10,7 +10,7 @@ function config($routeProvider) {
         templateUrl: 'main/main.html',
         controller: 'MainController',
         controllerAs: 'vm'
-    }).when('/film/:filmid', {
+    }).when('/film/:id', {
         templateUrl: 'film/film.html',
         // templateUrl: function(params){ return '/templates/film.html' + params.id;},
         controller: 'FilmController',

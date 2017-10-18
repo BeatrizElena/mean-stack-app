@@ -47,7 +47,13 @@
                 $scope.decrement = function(amount) {
                     $scope.number = $scope.number - amount;
                 }
-            }          
+            }
+            
+            angular.module('myApp').controller('MyController5', MyController5); 
+            function MyController5() {
+                var vm = this;
+                vm.name = 'Bea';
+            }
         </script>
         <style>        
             * {
@@ -84,12 +90,12 @@
                         </div>
                         <div class="collapse navbar-collapse" id="myNavbar">
                             <ul class="nav navbar-nav navbar-right"><!-- create bookmars for hrefs below  -->
-                                <li><a href="#38">38: Controllers, $scope and controllerAs</a></li>
-                                <li><a href="#39">39: Modules</a></li>
-                                <li><a href="#40">40: Single Page Apps (SPAs), Routes, Templates</a></li>
-                                <li><a href="#41">41: Built-in Services, Application Architecture</a></li>
-                                <li><a href="#42">42: Custom Services, Service vs. Factory</a></li>
-                                <li><a href="#43">43: Custom Filters</a></li>
+                                <li><a href="#b38">38: Controllers, $scope and controllerAs</a></li>
+                                <li><a href="#b39">39: Modules</a></li>
+                                <li><a href="#b40">40: Single Page Apps (SPAs), Routes, Templates</a></li>
+                                <li><a href="#b41">41: Built-in Services, Application Architecture</a></li>
+                                <li><a href="#b42">42: Custom Services, Service vs. Factory</a></li>
+                                <li><a href="#b43">43: Custom Filters</a></li>
                             </ul>
                         </div>
                     </div>
@@ -97,7 +103,7 @@
             </div>
             <div class="main">               
                 <div class="jumbotron" ng-controller="MyController">
-                    <h2 id="38">38: Controllers, $scope and controllerAs</h2>
+                    <h2 id="b38">38: Controllers, $scope and controllerAs</h2>
                     <h4>Controllers and $scope</h4>
                     <ul>
                         <li>Controllers are <b>JS Objects</b> that control the data of AngularJS apps and 
@@ -111,12 +117,14 @@
                     </ul>
                     <div ng-controller="MyController">
                         <p>The script looks like this:</p>
+                        <pre>
                         <code>
-                            angular.module('myApp', []).controller('MyController', MyController);<br>
+                            angular.module('myApp', []).controller('MyController', MyController);
                             function MyController($scope) {
                                 $scope.name = 'Bea';
                             }
                         </code>
+                    </pre>
                         <p>And it's called within the div with: <code>Hello, {{name} }</code></p>
                         <p>And it outputs:</p>
                         <p>Hello, {{ name }}!</p>
@@ -150,34 +158,35 @@
                         (I used $scope in my code. Missing brackets were a quick way to not have the code execute and lead to errors in the app.)
                         The code below would output <b>Beatriz Elena</b>.
                     </p>
-                    
+                    <pre>
                     <code>
-                        script <br>
-                            angular.module('myApp', [])<br>
-                            .controller('MyController', MyController)<br>
-                            .controller("MySecondController", MySecondController)<br>
-                            function MyController() {<br>
-                            var vm = this;<br>
-                            vm.name = 'Beatriz';<br>
+                            angular.module('myApp', [])
+                            .controller('MyController', MyController)
+                            .controller("MySecondController", MySecondController)
+                            function MyController() {
+                            var vm = this;
+                            vm.name = 'Beatriz';
                             }<br>
-                            function MySecondController() {<br>
-                                var vm = this;<br>
-                                vm.name = 'Elena'<br>
+                            function MySecondController() {
+                                var vm = this;
+                                vm.name = 'Elena'
                             }
-                        <br>/script><br>
-                        <br>div ng-controller="MyController as MyCtrl">                                                 
-                                <br>div ng-controller="MySecondController as MySecondCtrl">
-                                    <br>{{ MyCtrl.name } } 
-                                    <br>{{ MySecondCtrl.name } }
+
+                        div ng-controller="MyController as MyCtrl">                                                 
+                                div ng-controller="MySecondController as MySecondCtrl">
+                                    {{ MyCtrl.name } } 
+                                    {{ MySecondCtrl.name } }
                                 /div>
                         </div>
                     </code>
+                    </pre>
 </div>
                 <div class="jumbotron">
-                    <h2 id="39">39: Modules</h2>
+                    <h2 id="b39">39: Modules</h2>
                     <p>From this vid on, we'll be writing the modules code in the <b>app.js</b> file and the controller code in the 
                         <b>controller.js</b> and link to the files at the bottom of this HTML file.</p> 
                         <p>controller.js code:</p>
+                        <pre>
                         <code ng-non-bindable>
                             angular.module('myApp').controller('MyController', MyController); <br>
                             function MyController() {
@@ -185,19 +194,22 @@
                                 vm.name = "Bea";
                             }
                         </code><br>
+                        </pre>
                         <br><p>html file code and output:
+                        <pre>
                         <code ng-non-bindable>
-                            div ng-controller="MyController as MyCtrl">
+                            div ng-controller="MyController5 as MyCtrl">
                                 Hello, {{ MyCtrl.name }}!
                             /div>
                         </code></p>
-                        <div ng-controller="MyController as MyCtrl">
+                        </pre>
+                        <div ng-controller="MyController5 as MyCtrl">
                                 <p>Hello, {{ MyCtrl.name }}!</p>
                         </div>                   
                 </div>
 
                 <div class="jumbotron">
-                    <h2 id="40">40: Single Page Apps (SPAs), Routes, Templates</h2>
+                    <h2 id="b40">40: Single Page Apps (SPAs), Routes, Templates</h2>
                     <h3>Single Page Applications</h3>
                     <p>In SPAs, the user can navigate through the whole app without the page ever refreshing and even though the 
                         URLs are changing, the application itself is not going to be refreshed. What changes in SPAs is parts of the 
@@ -268,12 +280,19 @@
                 </div>
 
                 <div class="jumbotron">
-                    <h2 id="41">41: Built-in Services, Application Architecture (Structure)</h2>
+                    <h2 id="b41">41: Built-in Services, Application Architecture (Structure)</h2>
                     <a href="#"><h4>Built-In Services</h4></a>
+                    <p>In AngularJS, a service is a function, or object, that is available for, and limited to, your AngularJS application.
+                        AngularJS has about 30 built-in services.</p>
+                    <h4>Why use Services?</h4>
+                    <p>For many services, like the $location service, it seems like you could use objects that are already in the DOM, 
+                        like the window.location object, and you could, but it would have some limitations, at least for your AngularJS 
+                        application. AngularJS constantly supervises your application, and for it to handle changes and events properly, 
+                        it prefers that you use the $location service instead of the window.location object.</p>
                     <ul>
                         <li>One example of a built-in service is the <b>$routeProvider</b> we used in the last section.</li>
                         <li>For this section, we'll be using the <b>$http</b> service, to which we can daisy-chain methods such as 
-                            <b>GET</b>.</li>
+                            <b>GET</b>. The $http service makes a request to the server, and lets your application handle the response.</li>
                         <li>We'll also use the <b>$routeParams</b>service</li>
                     </ul>
                     <p style="font-size: 90%"><em>The /film/:p route is working but the angular {{ vm.film.title } and 
@@ -286,12 +305,21 @@
                 </div>
 
                 <div class="jumbotron">
-                    <h2 id="42">42: Custom Services, Service vs. Factory</h2>
-                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                    <h2 id="b42">42: Custom Services, Service vs. Factory</h2>
+                    <p>To create a custom service, connect the custome service to the module. </p>>
+                    <p><b>Difference between a service and a factory</b></p>
+                    <p><b>.service()</b> is a method on our module that takes a name and a function that defines the service. Once defined, 
+                        we can then inject and use that particular service in other components, like controllers, direectives, and filters. To use it, add it as a dependency 
+                        in the controller.</p>
+                    <p><b>.factory()</b>is also a mthod on our module and it also takes a name and a function that defines the factory. We can then inject it and use it 
+                        the same way we use a service.</p>
+                    <p>The difference is that a service is a <b>constructor function</b> that gets instantiated when called. A factory is 
+                        not a constructor function, it's just a function that gets called. We will be creating factory functions.</p>
+
                 </div>
 
                 <div class="jumbotron">
-                    <h2 id="43">43: Custom Filters</h2>
+                    <h2 id="b43">43: Custom Filters</h2>
                     <a href="#"><h4>Hotels (a full-stack app)</h4></a>
                 </div>
     
