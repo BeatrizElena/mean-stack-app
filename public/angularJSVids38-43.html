@@ -175,12 +175,96 @@
 </div>
                 <div class="jumbotron">
                     <h2 id="39">39: Modules</h2>
-                    <p>From this vid on, we'll be writing the JS code in the app.js file and link to it at the bottom of this HTML file.</p>                    
+                    <p>From this vid on, we'll be writing the modules code in the <b>app.js</b> file and the controller code in the 
+                        <b>controller.js</b> and link to the files at the bottom of this HTML file.</p> 
+                        <p>controller.js code:</p>
+                        <code ng-non-bindable>
+                            angular.module('myApp').controller('MyController', MyController); <br>
+                            function MyController() {
+                                var vm = this;
+                                vm.name = "Bea";
+                            }
+                        </code><br>
+                        <br><p>html file code and output:
+                        <code ng-non-bindable>
+                            div ng-controller="MyController as MyCtrl">
+                                Hello, {{ MyCtrl.name }}!
+                            /div>
+                        </code></p>
+                        <div ng-controller="MyController as MyCtrl">
+                                <p>Hello, {{ MyCtrl.name }}!</p>
+                        </div>                   
                 </div>
 
                 <div class="jumbotron">
                     <h2 id="40">40: Single Page Apps (SPAs), Routes, Templates</h2>
-                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                    <h3>Single Page Applications</h3>
+                    <p>In SPAs, the user can navigate through the whole app without the page ever refreshing and even though the 
+                        URLs are changing, the application itself is not going to be refreshed. What changes in SPAs is parts of the 
+                        application. If someone goes to a particular route, then an html page will be loaded into the application and 
+                        that's what's going to be displayed.</p>
+
+                    <p>In AngularJS a SPA can be used through routes. The routes map to a URL path and you also specify a controller and the 
+                        template for that URL. When the URL changes in the browser, Angular is going to change the controller and the 
+                        view templates that is using and it's going to display that.</p>
+
+                    <h4>Steps in Creating a SPA, Using Routes and Templates</h4>
+                        <ol>
+                            <li>Use the Angular Route library (link to it in the .html file) and then inject the route as a dependency
+                                in the <b>app.js</b> file: <code ng-non-bindable>angular.module('myApp', ['ngRoute']);</code></li>
+                            <li>Start using the routes by calling the .config() method on the "myApp" module and have it execute 
+                                the config function <b>.config(config)</b> which will use the <b>$routeProvider</b>. The $routeProvider allows us 
+                                to set up routes for the app.
+                                <code ng-non-bindable>angular.module('myApp', ['ngRoute']).config(config);
+                                function config($routeProvider) {
+                                    $routeProvider.when('/', {
+                                        template: 'this is the main page'
+                                    }).when('/about', {
+                                        template: 'this is the About page'
+                                    });
+                                } 
+                                </code> 
+                                The .when() says that when someone goes to this route on my application, then I want them to get the 
+                                template we wrote inside each particular route in the function.</li>
+                                <li>After writing the config function, we have to tell Angular where to insert the template. For that, 
+                                we go the body of our HTML and insert this div with the built-in <b>ng-view</b> directive: 
+                                <code ng-non-bindable>div ng-view div</code></li>
+                            <li>Modify the .config() method to have the templates refer to other HTML files, rather that to the hard-coded 
+                                text we used in Step 2 above.
+                                <code ng-non-bindable>angular.module('myApp', ['ngRoute']).config(config);
+                                    function config($routeProvider) {
+                                        $routeProvider.when('/', {
+                                            templateUrl: 'templates/main.html'
+                                        }).when('/about', {
+                                            templateUrl: 'templates/about.html'
+                                        }).otherwise({
+                                            redirectTo: '/'
+                                        });
+                                    } 
+                                </code> <br>If we now open the index.html file that requests the template files, browsers will not let us load 
+                                    those files because of "cross-origin request" problems with anything that doesn't have http or https protocols. 
+                                    To solve this we need to create an HTTP server; from NodeJS or a Simple Server from Python (if Python is installed) 
+                                    which is easily setup from the command line with: <b>python -m SimpleHTTPServer 8080</b>. Press Enter 
+                                    and "Allow" incoming connections. This sets up a server for all the files contained in the directory 
+                                    from which you setup the Simple Server.</li>
+                            <li>Write the controllers in the <b>controller.js file: 
+                                <code ng-non-bindable> angular.module('myApp').controller('MyController', MyController).controller('AboutController', AboutController); 
+                                    
+                                    function MyController() {
+                                        var vm = this;
+                                        vm.name = "Bea";
+                                    }
+                                   
+                                    function AboutController() {
+                                        var vm = this;
+                                        vm.about = "This is my bio";
+                                    }</code></b></li>
+                            <li>The main.html and about.html files can be populated with data coming from the controllers.</li>
+                            <li>Test in the browser.</li>
+                            <li>Be sure that after completing all the .when() functions for existing routes, use the 
+                                <b>.otherwise()</b> function to <b>redirectTo</b> to the root of the application or to a separate <b>404</b> template file.</li>
+                        </ol>
+
                 </div>
 
                 <div class="jumbotron">
@@ -213,7 +297,9 @@
                 </div>
             </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
     <script src="app.js"></script>
+    <script src="controller.js"></script>
     </body>
 </html>
