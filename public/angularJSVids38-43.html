@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html ng-app="myApp"> <!-- created module called "myApp". A controller, written as a JS script, will need to be assigned to it. -->
+    <head>
+        <title>AngularJS: Controllers, Modules, SPAs, Routes, Templates</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+        <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
+        <script src="assets/js/bootstrap-dropdown.js" type="text/javascript"></script>
+        <link href="animate.css" rel="stylesheet">
+        <!-- Controllers for "myApp" -->
+        <script>
+            angular.module('myApp', []).controller('MyController', MyController);
+            function MyController($scope) {
+                $scope.name = 'Bea';
+            }
+
+            angular.module('myApp').controller('MyController2', MyController2);
+            function MyController2($scope) {
+                $scope.rebels = [
+                {name: 'Luke Skywalker', profession: 'Jedi', weapon: 'lightsaber', age: 19}, 
+                {name: 'Ben Kenobi', profession: 'Jedi', weapon: 'lightsaber', age: 56}, 
+                {name: 'Han Solo', profession: 'smuggler', weapon: 'laser blaster', age: 32}, 
+                {name: 'Chewbacca', profession: 'pilot', weapon: 'bowcaster', age: 200},
+                ];
+            }
+
+            angular.module('myApp').controller('MyController3', MyController3);
+            function MyController3($scope) {
+                $scope.number = 0;
+                $scope.increment = function() {
+                    $scope.number = $scope.number + 1;
+                }
+
+                $scope.decrement = function() {
+                    $scope.number = $scope.number - 1;
+                }
+            }
+
+            angular.module('myApp').controller('MyController4', MyController4);
+            function MyController4($scope) {
+                $scope.number = 0;
+                $scope.increment = function(amount) {
+                    $scope.number = $scope.number + amount;
+                }
+
+                $scope.decrement = function(amount) {
+                    $scope.number = $scope.number - amount;
+                }
+            }          
+        </script>
+        <style>        
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                padding: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .jumbotron {
+                min-height: 5px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 50px;
+                word-break: break-all;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- House page within a Bootstrap Container Fluid Div -->
+        <div class="container-fluid">
+            <div class="page-header">
+                <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="ion-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#" target="_blank">AngularJS</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right"><!-- create bookmars for hrefs below  -->
+                                <li><a href="#38">38: Controllers, $scope and controllerAs</a></li>
+                                <li><a href="#39">39: Modules</a></li>
+                                <li><a href="#40">40: Single Page Apps (SPAs), Routes, Templates</a></li>
+                                <li><a href="#41">41: Built-in Services, Application Architecture</a></li>
+                                <li><a href="#42">42: Custom Services, Service vs. Factory</a></li>
+                                <li><a href="#43">43: Custom Filters</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="main">               
+                <div class="jumbotron" ng-controller="MyController">
+                    <h2 id="38">38: Controllers, $scope and controllerAs</h2>
+                    <h4>Controllers and $scope</h4>
+                    <ul>
+                        <li>Controllers are <b>JS Objects</b> that control the data of AngularJS apps and 
+                                    are created by a standard JS <b>object constructor</b></li>
+                        <li>An AngularJS app is defined by <b>ng-app="myApp" (myApp being any app name) and runs inside an HTML element 
+                                    (the <b>div</b> element; for instance).</b> </li>
+                        <li>The <b>ng-controller="MyController"</b> attribute is a directive that defines a controller (placed at the div where the app will run). 
+                                    <b>MyControler</b> is any name one can give to the attribute and it is a JS script.</li>
+                        <li>AngularJS invokes a <b>$scope</b> object; which is an application object that is the owner of application 
+                            variables and functions. <b>$scope</b> is the glue between the controller and the view.</li>
+                    </ul>
+                    <div ng-controller="MyController">
+                        <p>The script looks like this:</p>
+                        <code>
+                            angular.module('myApp', []).controller('MyController', MyController);<br>
+                            function MyController($scope) {
+                                $scope.name = 'Bea';
+                            }
+                        </code>
+                        <p>And it's called within the div with: <code>Hello, {{name} }</code></p>
+                        <p>And it outputs:</p>
+                        <p>Hello, {{ name }}!</p>
+                    </div>
+
+                    <div ng-controller="MyController2">
+                        <p>A 2nd controller outputs this: </p>
+                        <ul>
+                            <li ng-repeat="rebel in rebels">{{ rebel.name }} is a {{ rebel.profession }} fighting with a {{ rebel.weapon }}.</li>
+                        </ul>
+                    </div>
+
+                    <div ng-controller="MyController3">
+                            <p>A 3rd controller lets us work with the following buttons to increase/decrease a number: </p>
+                            <p>{{ number }}</p>
+                            <p>
+                                <button ng-click="increment()">+1</button>
+                                <button ng-click="decrement()">-1</button>
+                            </p>
+                    </div>
+
+                    <div ng-controller="MyController4">
+                            <p>A 4th controller is like the 3rd but we increase/decrease a number by 5: </p>
+                            <p>{{ number }}</p>
+                            <p>
+                                <button ng-click="increment(5)">+5</button>
+                                <button ng-click="decrement(5)">-5</button>
+                            </p>
+                    </div>
+                    <p>One way to have several controllers within nested divs is to not use <b>$scope</b> and instead have a script and the code within the divs as follows.
+                        (I used $scope in my code. Missing brackets were a quick way to not have the code execute and lead to errors in the app.)
+                        The code below would output <b>Beatriz Elena</b>.
+                    </p>
+                    
+                    <code>
+                        script <br>
+                            angular.module('myApp', [])<br>
+                            .controller('MyController', MyController)<br>
+                            .controller("MySecondController", MySecondController)<br>
+                            function MyController() {<br>
+                            var vm = this;<br>
+                            vm.name = 'Beatriz';<br>
+                            }<br>
+                            function MySecondController() {<br>
+                                var vm = this;<br>
+                                vm.name = 'Elena'<br>
+                            }
+                        <br>/script><br>
+                        <br>div ng-controller="MyController as MyCtrl">                                                 
+                                <br>div ng-controller="MySecondController as MySecondCtrl">
+                                    <br>{{ MyCtrl.name } } 
+                                    <br>{{ MySecondCtrl.name } }
+                                /div>
+                        </div>
+                    </code>
+</div>
+                <div class="jumbotron">
+                    <h2 id="39">39: Modules</h2>                        
+                </div>
+
+                <div class="jumbotron">
+                    <h2 id="40">40: Single Page Apps (SPAs), Routes, Templates</h2>
+                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                </div>
+
+                <div class="jumbotron">
+                    <h2 id="41">41: Built-in Services, Application Architecture</h2>
+                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                </div>
+
+                <div class="jumbotron">
+                    <h2 id="42">42: Custom Services, Service vs. Factory</h2>
+                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                </div>
+
+                <div class="jumbotron">
+                    <h2 id="43">43: Custom Filters</h2>
+                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                </div>
+    
+                <div class="content">
+                    <footer class="footer">
+                        <div class="container">
+                            <p class="text-muted text-center">
+                                <a><img src="hummingbird.png" height="26" alt="hummingbird picture"</a>
+                            </p>
+                        
+                            <p class="text-muted text-center">
+                                <small>&copy; 2017 Ortiz Web Development</small>
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+    </div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  -->
+    </body>
+</html>

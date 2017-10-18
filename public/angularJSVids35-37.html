@@ -18,57 +18,10 @@
             min-height: 5px;
             padding: 20px;
         }
-        .main {
-            max-width: 1600px;
-            margin: auto;
-        }
         h1 {
             font-size: 50px;
             word-break: break-all;
             text-align: center;
-        }
-        .row {
-            margin: 8px -16px;
-        }
-        /* padding bw each column */
-        .row, .row > .column {
-            padding: 8 px;
-        }
-        /* create 4 equal columns, each floating next to each other */
-        .column {
-            float: left;
-            width: 25%;
-        }
-        /* create floats after rows */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        .content {
-            background-color: white;
-            padding: 10px;
-        }
-        /* responsive layout: makes a 2-column layout instead of 4-column */
-        @media (max-width: 900px) {
-            .column {
-                width: 50%;
-            }
-        }
-        /* responsive layout: makes the 2-column stack on top of each other instead of next to each other */
-        @media (max-width: 600px) {
-            .column {
-                width: 100%;
-            }
-        }
-        .project-images {
-            width: 100%;
-        }
-        .skills {
-            text-align: right;
-            padding-right: 20px;
-            line-height: 40px; 
-            color: white;
         }
         .red {
             border-color: red;
@@ -131,6 +84,8 @@
                     code for a second, before all code are executed. Using the ng-cloak directive prevents this. `ng-cloak` goes in a 
                     couple of places in the HTML file. And the script linking to AngularJS should be at the bottom of the body element, just
                     above the closing tag for body.</li>
+                <li><b>ng-non-bindable</b> tells AngularJS to ignore the code within the div. 
+                    <a href=https://stackoverflow.com/a/28440570></a></li>
             </ul>
         </div>
 
@@ -393,10 +348,10 @@
             </ul>
         </div>
 
-        <p>From Section 4 of MEAN hotel Udemy course and https://www.w3schools.com/angular/angular_intro.asp</p>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+        <p>From Section 4 of MEAN hotel Udemy course and https://www.w3schools.com/angular/angular_intro.asp</p>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
 </body>
 </html>
 
