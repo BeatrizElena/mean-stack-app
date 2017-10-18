@@ -1,0 +1,2 @@
+angular.module('myApp', []) // Module Setter Syntax: array is for dependencies but even w/out dependencies an empty array is needed
+// controllers are in separate file: controllers.js which we'll link to in the html file. 

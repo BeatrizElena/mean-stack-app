@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp">
 <head>
     <title>MEAN hotel</title>
     <script src="jquery/jquery-3.2.1.min.js"></script>
@@ -8,9 +8,13 @@
 </head>
 <body>
     <h1>MEAN hotel homepage</h1>
-    <p>Hello, {{ user }}</p>
-    <input type="text" name="" id="" ng-model="user">
+    <div ng-controller="MyController as MyCtrl">
+        <p>Hello, {{ MyCtrl.name }}!</p>
+    </div>
+    <!-- <input type="text" name="" id="" ng-model="user"> -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
 </body>
 </html>
