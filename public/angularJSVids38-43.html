@@ -268,8 +268,21 @@
                 </div>
 
                 <div class="jumbotron">
-                    <h2 id="41">41: Built-in Services, Application Architecture</h2>
-                    <a href="#"><h4>Hotels (a full-stack app)</h4></a>
+                    <h2 id="41">41: Built-in Services, Application Architecture (Structure)</h2>
+                    <a href="#"><h4>Built-In Services</h4></a>
+                    <ul>
+                        <li>One example of a built-in service is the <b>$routeProvider</b> we used in the last section.</li>
+                        <li>For this section, we'll be using the <b>$http</b> service, to which we can daisy-chain methods such as 
+                            <b>GET</b>.</li>
+                        <li>We'll also use the <b>$routeParams</b>service</li>
+                    </ul>
+                    <p style="font-size: 90%"><em>The /film/:p route is working but the angular {{ vm.film.title } and 
+                        {{ vm.film.overview } } is not. Or is it how I'm trying to access the data returned by my API?</em></p>
+
+                    <a href="#"><h4>Application Architecture</h4></a>
+                    <p style="font-size: 90%">Once all the code was written, the last part of the video went over best-practices in terms of how to 
+                        organize the code into manageable files, and group those files into separate directories. We separated the 
+                        controllers into separate files and created a /main directory and a /film directory.</p>
                 </div>
 
                 <div class="jumbotron">
