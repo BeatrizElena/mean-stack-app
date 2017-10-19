@@ -6,16 +6,17 @@
 angular.module('myApp', ['ngRoute']).config(config);
 
 function config($routeProvider) {
-    $routeProvider.when('/', {
-        templateUrl: 'main/main.html',
+    $routeProvider
+    .when('/public', {
+        templateUrl: 'angular-app/main/main.html',
         controller: 'MainController',
         controllerAs: 'vm'
     }).when('/film/:id', {
-        templateUrl: 'film/film.html',
+        templateUrl: 'angular-app/film/film.html',
         // templateUrl: function(params){ return '/templates/film.html' + params.id;},
         controller: 'FilmController',
         controllerAs: 'vm'
     }).otherwise({
-        redirectTo: '/'
+        redirectTo: '/public'
     });
 }
