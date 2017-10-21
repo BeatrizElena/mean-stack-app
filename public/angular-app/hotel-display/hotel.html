@@ -12,15 +12,17 @@
     <li ng-repeat="review in vm.hotel.reviews"><strong>{{ review.name }} says: </strong> {{ review.review }}</li>
 </ul>
 
+<div ng-if="vm.isLoggedIn()">
 <form name="vm.reviewForm" ng-submit="vm.addReview()">
-    Your name: <input type="text" name="name" required ng-minlength="2" ng-model="vm.name">
+    <!-- commented code no longer needed. Review will automatically take the logged-in user's name -->
+    <!-- Your name: <input type="text" name="name" required ng-minlength="2" ng-model="vm.name">
     <div ng-show="vm.reviewForm.name.$dirty && vm.reviewForm.name.$invalid && vm.isSubmitted">
         <p>Name should be more than 2 characters long</p>
-    </div>
+    </div> -->
 
     Your rating: <input type="number" name="rating" required ng-pattern="/^[1-5]$/" ng-model="vm.rating">
     <div ng-show="vm.reviewForm.rating.$dirty && vm.reviewForm.rating.$invalid && vm.isSubmitted">
-        <p>Rating must be bewteen 1-5.</p>
+        <p>Rating must be between 1-5.</p>
     </div>
 
     Your review: <textarea name="review" required ng-model="vm.review"></textarea>
@@ -30,3 +32,4 @@
 
     <button type="submit" class="btn">Add review</button>
 </form>
+</div>

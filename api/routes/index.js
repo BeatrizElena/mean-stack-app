@@ -23,7 +23,7 @@ router
 router
     .route('/hotels/:hotelId/reviews')
     .get(ctrlReviews.reviewsGetAll)
-    .post(ctrlReviews.reviewsAddOne); 
+    .post(ctrlUsers.authenticate, ctrlReviews.reviewsAddOne); 
 
 // route to get to a single review at the URL api/hotels/<_id>/reviews/<review id>
 router
